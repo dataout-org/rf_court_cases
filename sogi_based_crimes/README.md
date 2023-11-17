@@ -18,3 +18,8 @@ The dataset includes 42 cases with the following metadata:
 * victim_sogi_markers: markers indicating victim's sexual orientation and/or gender identity (extracted as is, contains descriminatory language);
 * victim_sogi_source: a source from which sogi info is taken: a victim, accused, witness, judge;
 * notes: textual field with notes;
+
+The archive 'sudrf_keyword_search.zip' containd 716 court decisions with keywords indicating SOGI;
+The keywords with regular expressions are in the txt file 'sogi_keywords.txt';
+The jupyter notebook 'searching_keywords.ipynb' contains a pipeline of retrieving decisions with keywords.
+The file 'keyword_search_context_df.csv' contains 716 cases with case snippets;
