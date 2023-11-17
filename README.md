@@ -6,3 +6,5 @@ The cases with SOGI-based crimes were identified in all available court decision
 
 * The python functions in 'sudrfparser.py' allow to scrape cases from all court websites;
 * The functions in 'bsr_parser.py' are designed to search for cases on the official Russian portal "Provosudie" (bsr.sudrf.ru) containing keywords a user defines;
+
+The license is [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
