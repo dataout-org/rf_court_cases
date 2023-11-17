@@ -8,3 +8,11 @@ The cases with SOGI-based crimes were identified in all available court decision
 * The functions in 'bsr_parser.py' are designed to search for cases on the official Russian portal "Provosudie" (bsr.sudrf.ru) containing keywords a user defines;
 
 The license is [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+Information for the Bellingcat hackathon:
+
+Team name: Dataout
+
+Team members: Andrei Nesterov
+
+Future work: Releasing a larger database of SOGI-based crimes in Russia between 2008–2023.
