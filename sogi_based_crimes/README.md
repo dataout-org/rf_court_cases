@@ -1,5 +1,4 @@
-
-Crimes motivated by prejudices based on sexual orientation and gender identity (SOGI) collected from Russian court decisions for 2021 and 2022.
+Crimes motivated by prejudices based on sexual orientation and gender identity (SOGI) collected from Russian court decisions (first instance criminal cases) for 2021 and 2022.
 The dataset includes 42 cases with the following metadata:
 
 * case_id_uid: a combination of a case identifier and uid (unique identifier) used in the case link;
@@ -14,7 +13,7 @@ The dataset includes 42 cases with the following metadata:
 * victim_n_died: the number of victims who died as a result of the crime;
 * crime_address: address or place where a crime took place (if known) taken from a case text;
 * crime_description_tags: textual keywords that describe a crime: for example, "murder", "physical violence","threat of physical violence", "blackmailing"; these tags can be used only if there’s evidence in the case text; multiple tags can be used for one case;
-* hate_motive: TRUE or FALSE, if a case contains indicators of a hate crime (according to OSCE guidelines at https://www.osce.org/files/f/documents/1/4/523940.pdf);
+* hate_motive: TRUE or FALSE, if a case contains indicators of a hate crime (according to [OSCE guidelines](https://www.osce.org/files/f/documents/1/4/523940.pdf));
 * victim_sogi_markers: markers indicating victim's sexual orientation and/or gender identity (extracted as is, contains descriminatory language);
 * victim_sogi_source: a source from which sogi info is taken: a victim, accused, witness, judge;
 * notes: textual field with notes;
