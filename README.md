@@ -4,7 +4,7 @@ See the directory 'sogi_based_crimes' for the resulting dataset of collected cri
 
 The cases with SOGI-based crimes were identified in all available court decisions for 2021 and 2022 scraped from the official Russian court websites (for the info about the websites, refer to [sudrfparser](https://github.com/dataout-org/sudrfparser/tree/main/courts_info)).
 
-The python module [sudrfparser](https://github.com/dataout-org/sudrfparser) allow to scrape cases from all court websites. There are also functions to search cases by custom keywords on the official Russian portal "Provosudie" (bsr.sudrf.ru).
+The python module [sudrfparser](https://github.com/dataout-org/sudrfparser) allows to scrape cases from all court websites. There are also functions to search cases by custom keywords on the official Russian portal "Provosudie" (bsr.sudrf.ru).
 
 
 
