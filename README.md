@@ -13,7 +13,7 @@ To use the interface, open [cases_reader.html](cases_reader.html) in a browser. 
 
 _Information for the Bellingcat hackathon:_
 
-_* Team name: Dataout_
-_* Team members: Andrei Nesterov_
-_* Future work: Releasing a larger database of SOGI-based crimes in Russia between 2008–2023_
-_* The license is [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)_
+_ + Team name: Dataout_
+_ + Team members: Andrei Nesterov_
+_ + Future work: Releasing a larger database of SOGI-based crimes in Russia between 2008–2023_
+_ + The license is [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)_
