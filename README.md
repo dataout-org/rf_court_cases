@@ -7,7 +7,7 @@ The cases with SOGI-based crimes were identified in all available court decision
 The Python module [sudrfparser](https://github.com/dataout-org/sudrfparser) allows to scrape cases from all court websites. There are also functions to search cases by custom keywords on the official Russian portal "Provosudie" (bsr.sudrf.ru).
 
 ### In-browser tool for reading court cases with auto-annotation
-![Screenshot of an interface that allows to read, navigate, and process long court cases easier by highligting important categories in text](cases_reader_screenshot.png)
+![Screenshot of an interface that allows to read, navigate, and process long court cases easier by highligting important categories in text](cases_reader_screenshot.png | width=200)
 
 Court cases are ususually long texts. To exract data from them easier, we have built an in-browser interface that loads court cases texts from this repository and annotates (highlights) several categories. Currently, it supports highlighting (1) dates, (2) amounts of money, (3) sexual orientation markers, (4) keywords of extenuating and aggravating circumstances of punishments.
 To use the interface, open [cases_reader.html](cases_reader.html) in a browser. The code can be customised to read court cases from other sources (for example, by modifying the const variable 'jsonUrl' –– a link to a json file with cases texts).
