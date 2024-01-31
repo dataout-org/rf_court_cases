@@ -26,6 +26,11 @@
   margin-top:10px;
 }
 
+#case-id {
+  margin-bottom: 20px;
+  color: #808080;
+}
+
 #text-container{
   max-width:900px;
   margin-top:20px;
@@ -53,8 +58,27 @@ span.highlight{
 
 </head>
   <div class="container sticky-top" id="header">
+    <div class="row row-cols-auto">
+
+    <div class="col">
     <button type="button" class="btn btn-outline-dark btn-sm" id="prev-text">Previous</button>
     <button type="button" class="btn btn-outline-dark btn-sm" id="next-text">Next</button>
+    </div>
+
+    <div class="col">
+      <!-- Search by ID -->
+
+      <div class="input-group input-group-sm mb-3">
+      <input type="text" id="search-id-input" class="form-control" placeholder="Case ID" aria-label="Case ID" aria-describedby="basic-addon2">
+      <div class="input-group-append">
+      <button id="search-by-id-button" class="btn btn-outline-dark btn-sm" type="search">Search</button>
+      </div>
+      </div>
+
+    </div>
+
+    </div>
+
     <!-- Checkboxes for highlighting -->
     <div id="checkbox-bar">
       <div class="row row-cols-auto">
@@ -76,7 +100,7 @@ span.highlight{
       <div class="col">
       <div class="form-check form-switch">
       <input class="form-check-input" type="checkbox" id="enable-search-3">
-      <label class="form-check-label" for="enable-search-3">sum</label>
+      <label class="form-check-label" for="enable-search-3">money</label>
       </div>
       </div>
         
@@ -101,11 +125,16 @@ span.highlight{
 <script id="javascript">
 
 let cases = [];
+let currentState = {
+  type: 'index', // 'index' for regular navigation, 'id' for search by ID
+  value: 0       // Stores either an index or an ID
+};
 let currentIndex = 0;
+
 const regexPatterns = [
   { pattern: /(((\d{2}\.){2})\d{4})|(\d{1,2} [\w\u0400-\u04FF]+ \d{4})/gi, color: "#FFB6C1" },
   { pattern: /(сексуальн|нетрадицион|лесби|трансвест|трансгендер|ЛГБТ|мужелож)/gi, color: "#48D1CC" },
-  {pattern: /(\d{1,6}\s?\d*\sрублей)/gi, color: "#98FB98"},
+  {pattern: /(\d{1,6}\s?\d*\sруб)/gi, color: "#98FB98"},
   {pattern: /(смягчающи|отягчающ)/gi, color: "#CD853F"}
 ];
 
@@ -113,6 +142,38 @@ function highlightText(text, pattern, color) {
   return text.replace(pattern, match =>
   `<span class="highlight" style="background-color: ${color};" onclick="copyHighlightedText(this)">${match}</span>`);
 }
+
+function highlightCurrentText() {
+  let textToDisplay;
+  let caseIdDisplay = ""; // For displaying the case ID
+
+  if (currentState.type === 'index' && currentIndex < cases.length) {
+    // Start with the original text for index navigation
+    caseIdDisplay = `<div id="case-id"> ${cases[currentIndex].case_id_uid}</div>`;
+    textToDisplay = cases[currentIndex].case_text;
+  } else if (currentState.type === 'id') {
+    // Start with the original text for ID search
+    const foundCase = cases.find(c => c.case_id_uid === currentState.value);
+    
+    if (foundCase) {
+      caseIdDisplay = `<div id="case-id"> ${foundCase.case_id_uid}</div>`;
+      textToDisplay = foundCase.case_text;
+    } else {
+      textToDisplay = "No case found with that ID";
+    }
+  }
+
+  if (textToDisplay) {
+    let formattedText = caseIdDisplay + textToDisplay.replace(/\n/g, '<br>'); // Include case ID and handle new lines
+    regexPatterns.forEach((item, i) => {
+      if ($('#enable-search-' + (i + 1)).is(':checked')) {
+        formattedText = highlightText(formattedText, item.pattern, item.color);
+      }
+    });
+    $('#text-container').html(formattedText);
+  }
+}
+
 
 
 function updateButtonStates() {
@@ -138,18 +199,20 @@ function loadTextsFromGitHub(url) {
 
 function displayText() {
   if (currentIndex >= 0 && currentIndex < cases.length) {
-    let formattedText = cases[currentIndex].case_text.replace(/\n/g, '<br>'); // new lines for readability 
-
-    regexPatterns.forEach((item, i) => {
-      if ($('#enable-search-' + (i + 1)).is(':checked')) {
-        formattedText = highlightText(formattedText, item.pattern, item.color);
-      }
-    });
-
-    $('#text-container').html(formattedText);
+    currentState.type = 'index';
+    currentState.value = currentIndex;
+    highlightCurrentText(); // Apply highlighting
   }
   updateButtonStates();
 }
+
+function searchById() {
+  const searchId = document.getElementById("search-id-input").value;
+  currentState.type = 'id';
+  currentState.value = searchId;
+  highlightCurrentText(); // Apply highlighting
+}
+
 
 function copyHighlightedText(element) {
   const originalColor = element.style.backgroundColor;
@@ -183,12 +246,14 @@ $(document).ready(function() {
       displayText();
     }
   });
-  $('input[type="checkbox"]').change(displayText);
+  $('input[type="checkbox"]').change(highlightCurrentText);
 });
 
 window.onscroll = function() {
   scrollFunction();
 };
+
+document.getElementById("search-by-id-button").addEventListener("click", searchById);
 
 // 
 
